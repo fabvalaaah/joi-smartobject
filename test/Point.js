@@ -1,5 +1,5 @@
 const Joi = require("@hapi/joi");
-const SmartObject = require("../SmartObject");
+const SmartObject = require("../joi-smartobject");
 
 class Point extends SmartObject {
   static getSchema() {

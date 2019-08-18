@@ -1,8 +1,8 @@
 {
   "name": "joi-smartobject",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "joi-smartobject is an NPM package that features an ES6 superclass called SmartObject. This superclass forces the validation of a constructor given Joi schema when properties of its subclass are modified. At runtime, if a property of an instance that inherits from SmartObject is unauthorized or has a wrong type, a ValidationError is thrown (and should be caught).",
-  "main": "SmartObject.js",
+  "main": "joi-smartobject.js",
   "scripts": {
     "test": "node ./test/test.js"
   },
