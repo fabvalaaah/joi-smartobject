@@ -2,7 +2,7 @@
 
 SmartObject is an ES6 class to inherit. It forces the validation of a constructor given Joi schema when setting subclass properties. At runtime, if a property is unauthorized or has a wrong type, a ValidationError is thrown (and should be caught).
 
-## How to use it in my project?
+## How to use it in a project?
 
 Just copy the file "SmartObject.js" into your project and require it in your classes like this:
 

@@ -15,7 +15,7 @@ console.log(`${myPoint}`); // Instance has not been initialized
 
 // Valid init and calls
 myPoint = new Point(42, 43);
-console.log(`${myPoint.foo("Toto was here!")}`);
+console.log(`${myPoint.foo("Fabvalaaah was here!")}`);
 console.log(`${myPoint}`);
 // -------
 
