@@ -1,0 +1,40 @@
+{
+  "name": "smartobject",
+  "version": "1.0.0",
+  "description": "SmartObject is an ES6 class to inherit. It forces the validation of a constructor given Joi schema when setting subclass properties. At runtime, if a property is unauthorized or has a wrong type, a ValidationError is throwed (and should be caught).",
+  "main": "./test/app.js",
+  "scripts": {
+    "start": "node ./test/app.js"
+  },
+  "keywords": [
+    "smartobject",
+    "type",
+    "types",
+    "validation",
+    "validator",
+    "joi",
+    "schema",
+    "object",
+    "class",
+    "subclass",
+    "inheritance",
+    "property",
+    "properties",
+    "field",
+    "fields"
+  ],
+  "author": "Fabvalaaah",
+  "email": "fabvalaaah@laposte.net",
+  "contributors": [
+    "Fabvalaaah"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fabvalaaah/smartobject.git"
+  },
+  "dependencies": {
+    "@hapi/joi": "^15.1.1",
+    "@types/hapi__joi": "^15.0.3"
+  }
+}
