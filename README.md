@@ -1,16 +1,20 @@
-# SmartObject
+# joi-smartobject
 
-SmartObject is an ES6 class to inherit. It forces the validation of a constructor given Joi schema when setting subclass properties. At runtime, if a property is unauthorized or has a wrong type, a ValidationError is thrown (and should be caught).
+joi-smartobject is an NPM package that features an ES6 superclass called SmartObject. This superclass forces the validation of a constructor given Joi schema when properties of its subclass are modified. At runtime, if a property of an instance that inherits from SmartObject is unauthorized or has a wrong type, a ValidationError is thrown (and should be caught).
 
-## How to use it in a project?
+## Package installation
 
-Just copy the file "SmartObject.js" into your project and require it in your classes like this:
+Run `npm i joi-smartobject` to install the package.
+
+## Require & usage
+
+Require the package with:
 
 ```javascript
-const SmartObject = require("SmartObject");
+const SmartObject = require("joi-smartobject");
 ```
 
-Then, just make your subclasses extends SmartObject as follow:
+Then make your subclass extends SmartObject as follow:
 
 ```javascript
 class SubClass extends SmartObject {
@@ -18,27 +22,64 @@ class SubClass extends SmartObject {
     super(...); // With the valid Joi schema of the SubClass as parameter
     ...
   }
+}
 ```
 
-## How to run the embedded example?
+Now, properties of SubClass instances will be checked each time they change.
 
-Just execute `npm i` and then `npm start` in a console opened in the root directory of this project. Related files are located in the "./test" directory.
+## Example
+
+Point is an object that stores 2D coordinates (x, y) as positive or null integers. It also has a dumb function called "foo(...)" and an overriden "toString()":
+
+```javascript
+const Joi = require("@hapi/joi");
+const SmartObject = require("joi-smartobject");
+
+class Point extends SmartObject {
+  static getSchema() {
+    return Joi.object().keys({
+      x: Joi.number()
+        .integer()
+        .min(0), // int x (>=0)
+      y: Joi.number()
+        .integer()
+        .min(0) // int y (>=0)
+    });
+  }
+
+  constructor(x, y) {
+    super(Point.getSchema()); // Mandatory
+
+    this.x = x;
+    this.y = y;
+  }
+
+  foo(message) {
+    return message;
+  }
+
+  toString() {
+    return `(${this.x}, ${this.y})`;
+  }
+}
+
+module.exports = Point;
+```
+
+## Tests
+
+Run `npm test` from the local module directory to execute the embedded "tests" (located in the "test" folder). I assume these tests are not actual serious tests. Consider them as a sample of common use-cases.
 
 ## DONATION
 
-As I share these sources for commercial use too, maybe you could consider
-sending me a reward (even a tiny one) to my **Ethereum** wallet at the address
-**0x1fEaa1E88203cc13ffE9BAe434385350bBf10868**
-If so, I would be forever grateful to you and motivated to keep up the good work
-for sure :oD **Thanks in advance!**
+As I share these sources for commercial use too, maybe you could consider sending me a reward (even a tiny one) to my **Ethereum** wallet at the address **0x1fEaa1E88203cc13ffE9BAe434385350bBf10868** If so, I would be forever grateful to you and motivated to keep up the good work for sure :oD
+
+**Thanks in advance!**
 
 ## FEEDBACK
 
-You like my work? It helps you? You plan to use/reuse/transform it? You have
-suggestions or questions about it? Just want to say "hi"? Let me know your
-feedbacks by mail to the address fabvalaaah@laposte.net
+You like my work? It helps you? You plan to use/reuse/transform it? You have suggestions or questions about it? Just want to say "hi"? Let me know your feedbacks by mail to the address fabvalaaah@laposte.net
 
 ## DISCLAIMER
 
-I am not responsible in any way of any consequence of the usage of this piece of
-software. You are warned, use it at your own risks.
+I am not responsible in any way of any consequence of the usage of this piece of software. You are warned, use it at your own risks.
