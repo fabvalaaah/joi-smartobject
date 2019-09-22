@@ -42,13 +42,8 @@ const Joi = require("@hapi/joi");
 
 class SmartObject {
   constructor(schema) {
-    // Checking if the schema looks like a valid Joi schema
-    if (
-      !schema ||
-      typeof schema !== typeof Joi.object() ||
-      !schema.isJoi ||
-      schema.schemaType !== "object"
-    ) {
+    // Checking if the schema is an actual hapi/joi schema
+    if (!Joi.isSchema(schema)) {
       throw new TypeError(`schema must be a valid Joi schema`);
     }
     // -------
@@ -77,7 +72,7 @@ class SmartObject {
           // Rollbacking the value on validation error
           Reflect.set(obj._content, prop, oldValue);
           if (!Reflect.get(obj._content, prop)) {
-            delete obj._content[prop];
+            Reflect.deleteProperty(obj._content, prop);
           }
           throw error; // Forwarding the error
           // -------

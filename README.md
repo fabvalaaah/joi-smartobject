@@ -1,6 +1,6 @@
 # joi-smartobject
 
-joi-smartobject is an NPM package that features an ES6 superclass called SmartObject. This superclass forces the validation of a constructor given Joi schema when properties of its subclass are modified. At runtime, if a property of an instance that inherits from SmartObject is unauthorized or has a wrong type, a ValidationError is thrown (and should be caught).
+joi-smartobject is an NPM module that features an ES6 superclass called JoiSmartObject. This superclass forces the validation of a constructor given hapi/joi schema when properties of its subclass are added, updated or deleted. At runtime, if a property of an object that inherits from JoiSmartObject is added, deleted or set with a wrong typed value, a hapi/joi ValidationError is automatically thrown (and should be caught).
 
 ## Package installation
 
@@ -19,7 +19,7 @@ Then make your subclass extends SmartObject as follow:
 ```javascript
 class SubClass extends SmartObject {
   constructor(...) {
-    super(...); // With the valid Joi schema of the SubClass as parameter
+    super(...); // With the valid hapi/joi schema of the SubClass as parameter
     ...
   }
 }
@@ -37,7 +37,7 @@ const SmartObject = require("joi-smartobject");
 
 class Point extends SmartObject {
   static getSchema() {
-    return Joi.object().keys({
+    return Joi.object({
       x: Joi.number()
         .integer()
         .min(0), // int x (>=0)

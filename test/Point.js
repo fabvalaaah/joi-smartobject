@@ -1,9 +1,9 @@
 const Joi = require("@hapi/joi");
-const SmartObject = require("../joi-smartobject");
+const SmartObject = require("../JoiSmartObject");
 
 class Point extends SmartObject {
   static getSchema() {
-    return Joi.object().keys({
+    return Joi.object({
       x: Joi.number()
         .integer()
         .min(0), // int x (>=0)
