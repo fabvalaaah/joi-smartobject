@@ -1,7 +1,7 @@
 {
   "name": "joi-smartobject",
-  "version": "1.0.2",
-  "description": "joi-smartobject is an NPM module that features an ES6 superclass called JoiSmartObject. This superclass forces the validation of a constructor given hapi/joi schema when properties of its subclass are added, updated or deleted. At runtime, if a property of an object that inherits from JoiSmartObject is added, deleted or set with a wrong typed value, a hapi/joi ValidationError is automatically thrown (and should be caught).",
+  "version": "1.0.3",
+  "description": "joi-smartobject is an NPM module that provides a superclass called JoiSmartObject. This superclass forces the validation of a constructor given hapi/joi schema when properties of its subclass are added, updated or deleted. At runtime, if properties of an object that inherits from JoiSmartObject are wrongly added, deleted or set with bad typed values, a hapi/joi ValidationError is automatically thrown (and should be caught).",
   "main": "joi-smartobject.js",
   "scripts": {
     "test": "node ./test/test.js"
