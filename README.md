@@ -1,33 +1,36 @@
 # joi-smartobject
 
-joi-smartobject is an NPM module that provides a superclass called JoiSmartObject. This superclass forces the validation of a constructor given hapi/joi schema when properties of its subclass are added, updated or deleted. At runtime, if properties of an object that inherits from JoiSmartObject are wrongly added, deleted or set with bad typed values, a hapi/joi ValidationError is automatically thrown (and should be caught).
+NPM package that provides a wrapper which associates an hapi/joi schema to a class then automatically validates each change made on object properties at runtime.
 
-## Package installation
+## Installation
 
-Run `npm i joi-smartobject` to install the package.
+`npm i joi-smartobject`
 
-## Require & usage
+## Usage
 
-Require the package with:
+1. Class must extend JoiSmartObject.
+2. First instruction of the constructor must be a call to `super` with the hapi/joi schema describing properties as parameter.
+
+Then, when a property of an instance is added/updated/deleted, the hapi/joi schema is automatically validated to ensure that the modification is compliant with this schema. If not, the object is left intact and an hapi/joi `ValidationError` is thrown.
+
+### Require
 
 ```javascript
-const SmartObject = require("joi-smartobject");
+const JoiSmartObject = require("joi-smartobject");
 ```
 
-Then make your subclass extends SmartObject as follow:
+### Wrap a JavaScript class "Foo"
 
 ```javascript
-class SubClass extends SmartObject {
+class Foo extends JoiSmartObject { // JoiSmartObject inheritance
   constructor(...) {
-    super(...); // With the valid hapi/joi schema of the SubClass as parameter
+    super(...); // With the hapi/joi schema describing the properties of a "Foo" object as parameter
     ...
   }
 }
 ```
 
-Now, properties of SubClass instances will be checked each time they change.
-
-## Example
+### Example
 
 Point is an object that stores 2D coordinates (x, y) as positive or null integers. It also has a dumb function called "foo(...)" and an overriden "toString()":
 
@@ -38,12 +41,8 @@ const SmartObject = require("joi-smartobject");
 class Point extends SmartObject {
   static getSchema() {
     return Joi.object({
-      x: Joi.number()
-        .integer()
-        .min(0), // int x (>=0)
-      y: Joi.number()
-        .integer()
-        .min(0) // int y (>=0)
+      x: Joi.number().integer().min(0), // int x (>=0)
+      y: Joi.number().integer().min(0), // int y (>=0)
     });
   }
 
@@ -66,20 +65,10 @@ class Point extends SmartObject {
 module.exports = Point;
 ```
 
-## Tests
+### Tests
 
-Run `npm test` from the local module directory to execute the embedded "tests" (located in the "test" folder). I assume these tests are not actual serious tests. Consider them as a sample of common use-cases.
+`npm test`
 
-## DONATION
-
-As I share these sources for commercial use too, maybe you could consider sending me a reward (even a tiny one) to my **Ethereum** wallet at the address **0x1fEaa1E88203cc13ffE9BAe434385350bBf10868** If so, I would be forever grateful to you and motivated to keep up the good work for sure :oD
-
-**Thanks in advance!**
-
-## FEEDBACK
-
-You like my work? It helps you? You plan to use/reuse/transform it? You have suggestions or questions about it? Just want to say "hi"? Let me know your feedbacks by mail to the address fabvalaaah@laposte.net
-
-## DISCLAIMER
+## Disclaimer
 
 I am not responsible in any way of any consequence of the usage of this piece of software. You are warned, use it at your own risks.

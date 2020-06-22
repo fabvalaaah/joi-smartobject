@@ -1,4 +1,4 @@
-/*
+/**
  * MIT License
  *
  * Copyright (c) 2019 Fabvalaaah - fabvalaaah@laposte.net
@@ -20,19 +20,9 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
- *
- * DONATION:
- * As I share these sources for commercial use too, maybe you could consider
- * sending me a reward (even a tiny one) to my Ethereum wallet at the address
- * 0x1fEaa1E88203cc13ffE9BAe434385350bBf10868
- * If so, I would be forever grateful to you and motivated to keep up the good
- * work for sure :oD Thanks in advance !
- *
- * FEEDBACK:
- * You like my work? It helps you? You plan to use/reuse/transform it? You have
- * suggestions or questions about it? Just want to say "hi"? Let me know your
- * feedbacks by mail to the address fabvalaaah@laposte.net
- *
+ */
+
+/**
  * DISCLAIMER:
  * I am not responsible in any way of any consequence of the usage
  * of this piece of software. You are warned, use it at your own risks.
@@ -51,11 +41,11 @@ class SmartObject {
     // Hiding and initializing private schema and content
     Object.defineProperty(this, "_schema", {
       enumerable: false,
-      writable: true
+      writable: true,
     });
     Object.defineProperty(this, "_content", {
       enumerable: false,
-      writable: true
+      writable: true,
     });
     this._schema = schema;
     this._content = {};
@@ -64,7 +54,7 @@ class SmartObject {
     return new Proxy(this, {
       set: (obj, prop, value) => {
         const oldValue = Reflect.get(obj._content, prop); // Saving the old value
-        const result = Reflect.set(obj._content, prop, value); // Setting to the new value
+        const result = Reflect.set(obj._content, prop, value); // Setting the new value
 
         try {
           Joi.assert(obj._content, obj._schema); // Validating the content
@@ -85,7 +75,7 @@ class SmartObject {
         return typeof property === "function"
           ? property.bind(target._content)
           : Reflect.get(target._content, prop);
-      }
+      },
     });
   }
 }
