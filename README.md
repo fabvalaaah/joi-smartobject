@@ -19,7 +19,7 @@ Then, when a property of an instance is added/updated/deleted, the hapi/joi sche
 const JoiSmartObject = require("joi-smartobject");
 ```
 
-### Wrap a JavaScript class "Foo"
+### Quick example
 
 ```javascript
 class Foo extends JoiSmartObject { // JoiSmartObject inheritance
@@ -36,9 +36,9 @@ Point is an object that stores 2D coordinates (x, y) as positive or null integer
 
 ```javascript
 const Joi = require("@hapi/joi");
-const SmartObject = require("joi-smartobject");
+const JoiSmartObject = require("joi-smartobject");
 
-class Point extends SmartObject {
+class Point extends JoiSmartObject {
   static getSchema() {
     return Joi.object({
       x: Joi.number().integer().min(0), // int x (>=0)
