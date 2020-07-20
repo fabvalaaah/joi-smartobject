@@ -1,6 +1,6 @@
 {
   "name": "joi-smartobject",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "NPM package that provides a wrapper which associates an hapi/joi schema to a class then automatically validates each change made on object properties at runtime",
   "main": "joi-smartobject.js",
   "scripts": {
