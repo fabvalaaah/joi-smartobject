@@ -28,7 +28,7 @@
  * of this piece of software. You are warned, use it at your own risks.
  */
 
-const Joi = require("@hapi/joi");
+const Joi = require("joi");
 
 class SmartObject {
   constructor(schema) {

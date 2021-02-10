@@ -1,7 +1,7 @@
 {
   "name": "joi-smartobject",
-  "version": "1.0.5",
-  "description": "NPM package that provides a wrapper which associates an hapi/joi schema to a class then automatically validates each change made on object properties at runtime",
+  "version": "1.0.6",
+  "description": "NPM package that provides a wrapper which associates a joi schema to a class then automatically validates each change made on object properties at runtime",
   "main": "joi-smartobject.js",
   "scripts": {
     "test": "jest --coverage"
@@ -26,10 +26,10 @@
     "url": "https://github.com/fabvalaaah/joi-smartobject.git"
   },
   "dependencies": {
-    "@hapi/joi": "17.1.1"
+    "joi": "17.4.0"
   },
   "devDependencies": {
-    "jest": "26.0.1"
+    "jest": "26.6.3"
   },
   "jest": {
     "testEnvironment": "node"

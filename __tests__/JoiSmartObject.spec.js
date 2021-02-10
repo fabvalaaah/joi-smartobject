@@ -1,4 +1,4 @@
-const Joi = require("@hapi/joi");
+const Joi = require("joi");
 const Point = require("../test_materials/Point");
 const InvalidPoint = require("../test_materials/InvalidPoint");
 
